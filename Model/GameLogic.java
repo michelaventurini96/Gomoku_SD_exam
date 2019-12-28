@@ -4,7 +4,6 @@ import java.util.List;
 
 class GameLogic {
     private Board myBoard;
-    public String ss;
     //players of the board
     private int current_player;
     private int opposing_player;
@@ -20,7 +19,7 @@ class GameLogic {
     }
 
 
-    // public method that will try to place a piece in the given x,y coordinate
+    // public method that will try to place a piece in the given x (col ),y (row )coordinate
     public void placePiece(final int x, final int y) {
         if (this.getPiece(x, y) != 0)
             return;
@@ -29,6 +28,7 @@ class GameLogic {
             return;
 
         this.myBoard.pieces[x][y].setPiece(this.current_player);
+        this.InsertMove(x,y);
         this.swapPlayers(); //cambia il colore
     }
 
@@ -50,15 +50,25 @@ class GameLogic {
         return (false);
     }
 
+    private void InsertMove(final int x, final int y){
+        Move m=new Move(y,x);
+        if(this.current_player==this.game.getP1().getColor()){
+            this.game.getP1().addposition(m);
+        }
+        else{
+            this.game.getP2().addposition(m);
+        }
+    }
+
     // private method for swapping the players
     private void swapPlayers() {
-        if (this.current_player == Board.WHITE_PLAYER) {
-            this.current_player = Board.BLACK_PLAYER;
-            this.opposing_player = Board.WHITE_PLAYER;
+       if (this.current_player== Board.WHITE_PLAYER) {
+           this.current_player= Board.BLACK_PLAYER;
+           this.opposing_player= Board.WHITE_PLAYER;
         }
         else {
-            this.current_player = Board.WHITE_PLAYER;
-            this.opposing_player = Board.BLACK_PLAYER;
+           this.current_player=Board.WHITE_PLAYER;
+           this.opposing_player= Board.BLACK_PLAYER;
         }
     }
 
@@ -83,8 +93,8 @@ class GameLogic {
     public void resetGame() {
         this.resetRenders();
 
-        this.current_player= Board.BLACK_PLAYER;
-        this.opposing_player = Board.WHITE_PLAYER;
+        this.current_player=Board.BLACK_PLAYER;
+        this.opposing_player=Board.WHITE_PLAYER;
     }
 
     // private method that will reset the renders

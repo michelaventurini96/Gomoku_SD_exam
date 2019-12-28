@@ -8,14 +8,15 @@ import java.util.Set;
 public class Player {
     private final String name;
     private int score = 0;
-    private String color;
+    private int  color;
     private Set<Move> position=new LinkedHashSet<Move>();
     //The idea is to set the position for each player and initialize
     // it with the opening rules.
 
     public Player(String name,String color){
         this.name = name;
-        this.color = color;
+        if(color=="Black") {this.color = 1;}
+        else {this.color=2;}
     }
 
     public void addposition(Move m){
@@ -31,12 +32,12 @@ public class Player {
         return name;
     }
 
-    public String getColor() {
-        return color;
+    public int getColor() {
+        return this.color;
     }
 
-    public void SetColor(String newcol) {
-        this.color=color;
+    public void SetColor(int newcol) {
+        this.color=newcol;
     }
 
     public int getScore() {

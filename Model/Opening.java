@@ -65,8 +65,8 @@ public class Opening {
         player1.removeposition(moveb2);
         player2.addposition(moveb1);
         player2.addposition(moveb2);
-        player1.SetColor("white");
-        player2.SetColor("black");
+        player1.SetColor(2);
+        player2.SetColor(1);
     };
 
     public void Swap(Move moveb1, Move moveb2, Move movebw){
