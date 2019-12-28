@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BoardController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TabPane layoutX="-1.0" layoutY="27.0" prefHeight="0.0" prefWidth="175.0" tabClosingPolicy="UNAVAILABLE" />
+                  <TabPane prefHeight="400.0" prefWidth="175.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab fx:id="p1Board" text="Player 1">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="327.0" prefWidth="175.0">
+                                 <children>
+                                    <Label layoutX="11.0" layoutY="38.0" prefWidth="36.0" text="Color" />
+                                    <Label layoutX="11.0" layoutY="83.0" text="Score" />
+                                    <Label fx:id="c1Board" layoutX="74.0" layoutY="38.0" text="Label" />
+                                    <Label fx:id="s1Board" layoutX="74.0" layoutY="83.0" text="Label" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab fx:id="p2Board" text="Player 2">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="6.0" layoutY="41.0" text="Color" />
+                                    <Label layoutX="6.0" layoutY="87.0" text="Score" />
+                                    <Label fx:id="c2Board" layoutX="74.0" layoutY="41.0" text="Label" />
+                                    <Label fx:id="s2Board" layoutX="74.0" layoutY="87.0" text="Label" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="491.0" />
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
