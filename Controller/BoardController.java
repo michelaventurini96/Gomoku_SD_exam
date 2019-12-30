@@ -62,6 +62,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Control;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -71,20 +72,24 @@ import java.util.ResourceBundle;
 public class BoardController extends Control {
 
     Board myBoard;
-
+    private int clicks_count = 0; //clicks count added in order to set the opening moves check.
     public BoardController(int gridSize,GomokuGame game ) {
         this.setSkin(new ControlSkin(this)); // se non si mette si lamenta --> capire bene a cosa serve?
         this.myBoard = new Board(gridSize,game);
         this.getChildren().add(this.myBoard);
 
         this.setOnMouseClicked((event) -> {
-            this.myBoard.placePiece(event.getX(), event.getY());
+            clicks_count++;
+            if(clicks_count==this.myBoard.N) this.myBoard.getOpgame(event.getX(), event.getY());
+            else this.myBoard.placePiece(event.getX(), event.getY());
+
         });
 
         this.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.SPACE) this.myBoard.reset();
         });
     }
+
 
     //quando si aumentano le dimensioni della finestra trascindando
     @Override

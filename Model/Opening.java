@@ -5,18 +5,41 @@ import java.util.Scanner;
 public class Opening {
     private Player player1;
     private Player player2;
-    public Opening(Player p1, Player p2){
+    private String method;
+    private int numMoves;
+
+    public Opening(Player p1, Player p2,String m){
         this.player1=p1;
         this.player2=p2;
+        this.method=m;
+        System.out.println(this.method);
+        if(this.method=="Standard") this.numMoves=2;
+        else this.numMoves=0;
     };
 
+    public int getNummoves(){return this.numMoves;}
+
+
+    public void calling(){
+        if(this.method.equals("Standard")){
+            this.OpenStd();
+        }
+        if(this.method.equals("Pro")) this.Pro();
+        if(this.method.equals("LongPro")) this.LongPro();
+        if(this.method.equals("Swap")) this.Swap();
+        if(this.method.equals("Swap2")) this.Swap2();
+    }
+
     public void CheckError(){
+
         if(!player1.CheckAllMoves(player2)){
             throw new Error("place stones in different places");
+        }else{
+            System.out.println("end of opening moves");
         }
     };
 
-    public void CheckinError(Player p, Move m){
+    public void CheckinError(Player p, Piece m){
         if(!p.CheckinMoves(m)){
             throw new Error(p.getName()+" place stones in different places");
         }
@@ -24,14 +47,12 @@ public class Opening {
 /*
     Black can place anywhere, white secondly can place anywhere but on black spot.
  */
-    public void OpenStd(Move moveb, Move movew){
-        player1.addposition(moveb);
-        if(!moveb.equals(movew)) { player2.addposition(movew);}
-        else { throw new Error("white player can't overlap on black");}
+    public void OpenStd(){
+        CheckError();
     };
 
-    public void Pro(Move movew, Move moveb){
-        //set the black stone in the centre of the board ( (0,0) to change eventually).
+    public void Pro(){
+    /*    //set the black stone in the centre of the board ( (0,0) to change eventually).
         Move centre=new Move(0,0);
          player1.addposition(centre);
          player2.addposition(movew);  //white can place anywhere.
@@ -42,11 +63,11 @@ public class Opening {
         }else {
             player1.addposition(moveb);
         }
-        CheckError();
+        CheckError();*/
     };
 
-    public void LongPro(Move movew, Move moveb){
-        //set the black stone in the centre of the board ( (0,0) to change eventually).
+    public void LongPro(){
+       /* //set the black stone in the centre of the board ( (0,0) to change eventually).
         Move centre=new Move(0,0);
         player1.addposition(centre);
         player2.addposition(movew);  //white can place anywhere.
@@ -57,20 +78,20 @@ public class Opening {
         }else {
             player1.addposition(moveb);
         }
-        CheckError();
+        CheckError();*/
     };
 
-    public void utilitySwap(Move moveb1, Move moveb2, Move movebw){
+  /*  public void utilitySwap(Move moveb1, Move moveb2, Move movebw){
         player1.removeposition(moveb1);
         player1.removeposition(moveb2);
         player2.addposition(moveb1);
         player2.addposition(moveb2);
         player1.SetColor(2);
         player2.SetColor(1);
-    };
+    };*/
 
-    public void Swap(Move moveb1, Move moveb2, Move movebw){
-        player1.addposition(moveb1);
+    public void Swap(){
+     /*   player1.addposition(moveb1);
         CheckinError(player1,moveb2);
         player1.addposition(moveb2);
         CheckinError(player1,movebw);
@@ -85,11 +106,11 @@ public class Opening {
             player2.addposition(movebw);
         }
         //TODOOO: add new white position
-        CheckError();
+        CheckError();*/
     };
 
-    public void Swap2(Move moveb1, Move moveb2, Move movebw){
-        player1.addposition(moveb1);
+    public void Swap2(){
+       /* player1.addposition(moveb1);
         CheckinError(player1,moveb2);
         player1.addposition(moveb2);
         CheckinError(player1,movebw);
@@ -137,6 +158,6 @@ public class Opening {
                 }
             }
 
-        }
+        }*/
     };
 }

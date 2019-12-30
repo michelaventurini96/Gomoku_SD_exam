@@ -5,15 +5,23 @@ public class GomokuStd extends GomokuGame {
 
     public GomokuStd(){}
 
+
     @Override
-    public int initGame() {
+    public void initGame() {
         System.out.println("Mode standard");
         System.out.println("Players:" + getP1().getName() + " and " + getP2().getName() + " initial bets = " + getnBet() + " grDim= " + getGridDim());
-        return 0;
+        System.out.println("Opening Rules:" + getOp());
+        op=new Opening(getP1(),getP2(),getOp());
+
     }
 
     @Override
-    public void setRules(){};
+    public void OpeningRules(){op.calling();}
+
+    @Override
+    public void setRules(){
+
+    };
 
     @Override
     public String GetName(){return "Standard";}

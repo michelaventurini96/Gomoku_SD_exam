@@ -26,6 +26,8 @@
             <font>
                 <Font size="24.0" />
             </font></Label>
+      <Label layoutX="25.0" layoutY="249.0" prefHeight="17.0" prefWidth="113.0" text="Opening method" />
+      <ChoiceBox fx:id="choiceOpening" layoutX="33.0" layoutY="276.0" prefHeight="27.0" prefWidth="97.0" />
         <Separator layoutX="-11.0" layoutY="66.0" prefHeight="17.0" prefWidth="515.0" />
         <fx:script>
             function startGame()
@@ -37,6 +39,6 @@
       <ChoiceBox fx:id="choice" layoutX="175.0" layoutY="276.0" prefWidth="150.0" value="Standard" />
       <ChoiceBox fx:id="choicecol1" layoutX="326.0" layoutY="118.0" prefWidth="150.0" />
       <Label layoutX="365.0" layoutY="249.0" text="Grid Size" />
-      <ChoiceBox fx:id="choicegridSize" layoutX="365.0" layoutY="275.0" prefHeight="26.0" prefWidth="62.0" value = "15x15" />
+      <ChoiceBox fx:id="choicegridSize" layoutX="365.0" layoutY="275.0" prefHeight="26.0" prefWidth="62.0" value="15x15" />
     </children>
 </AnchorPane>

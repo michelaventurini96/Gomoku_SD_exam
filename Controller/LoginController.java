@@ -22,6 +22,7 @@ public class LoginController {
     ActionListener listener2;
 
     ObservableList<String> methods= FXCollections.observableArrayList("Standard","Free","Renju","Omok","Caro");
+    ObservableList<String> openings= FXCollections.observableArrayList("Standard","Pro","LongPro","Swap","Swap2");
     ObservableList<String> colors= FXCollections.observableArrayList("Black","White");
     ObservableList<String> sizes = FXCollections.observableArrayList("15x15","19x19");
 
@@ -43,6 +44,8 @@ public class LoginController {
     @FXML
     private ChoiceBox choicegridSize;
 
+    @FXML
+    private ChoiceBox choiceOpening;
 
     @FXML
     private void initialize(){
@@ -51,6 +54,7 @@ public class LoginController {
         choicecol1.setItems(colors);
         choicecol2.setItems(colors);
         choicegridSize.setItems(sizes);
+        choiceOpening.setItems(openings);
 
     }
 
@@ -64,6 +68,7 @@ public class LoginController {
         boolean isMyCol1Empty = choicecol1.getSelectionModel().isEmpty();
         boolean isMyCol2Empty = choicecol2.getSelectionModel().isEmpty();
         boolean isGridSizeEmpty = choicegridSize.getSelectionModel().isEmpty();
+        boolean isOpeningEmpty = choiceOpening.getSelectionModel().isEmpty();
 
         if (!isMyComboBoxEmpty && !isMyCol1Empty && !isMyCol2Empty && !isGridSizeEmpty){
             if (!(playerf.getText().equals("")) && !(players.getText().equals(""))) {
@@ -71,10 +76,13 @@ public class LoginController {
                     Player p1 = new Player(playerf.getText(), choicecol1.getSelectionModel().getSelectedItem().toString());
                     Player p2 = new Player(players.getText(), choicecol2.getSelectionModel().getSelectedItem().toString());
                     String gridSizeString = choicegridSize.getSelectionModel().getSelectedItem().toString();
+                    String opening_meth;
+                    if(!isOpeningEmpty){ opening_meth=choiceOpening.getSelectionModel().getSelectedItem().toString();}
+                    else {opening_meth="Standard";}
                     int gridSize;
                     if (gridSizeString.equals("15x15")) gridSize = 15;
                     else gridSize = 19;
-                    startGameUsingFactory(p1, p2, gridSize, choice.getSelectionModel().getSelectedItem().toString());
+                    startGameUsingFactory(p1, p2, gridSize, choice.getSelectionModel().getSelectedItem().toString(),opening_meth);
                     Stage stage = (Stage) eBottim.getScene().getWindow();
                     stage.close();
 
@@ -125,11 +133,12 @@ public class LoginController {
     }
 
 
-    public int startGameUsingFactory(Player p1, Player p2, int gridSize, String game){
+    public void startGameUsingFactory(Player p1, Player p2, int gridSize, String game,String m){
         this.targetGomoku = GomokuFactory.getGame(game).orElseThrow(() -> new IllegalArgumentException("Invalid operator"));
         this.targetGomoku.setPlayers(p1, p2);
         this.targetGomoku.setSize(gridSize);
-        return targetGomoku.initGame();
+        this.targetGomoku.setOp(m);
+        //return targetGomoku.initGame();
 
     }
 

@@ -12,10 +12,14 @@ class GameLogic {
    //list of all the pieces
     private List<Piece> pieceChunk;
 
+    public static int N;
+
     public GameLogic(Board board,GomokuGame g) {
         this.myBoard = board;
         this.resetGame();
         this.game=g;
+        this.game.initGame();
+        this.N=this.game.getN();
     }
 
 
@@ -30,6 +34,11 @@ class GameLogic {
         this.myBoard.pieces[x][y].setPiece(this.current_player);
         this.InsertMove(x,y);
         this.swapPlayers(); //cambia il colore
+    }
+
+    //utility function to call specific game's opening rule.
+    public void Opening(){
+        this.game.OpeningRules();
     }
 
 
@@ -50,8 +59,12 @@ class GameLogic {
         return (false);
     }
 
-    private void InsertMove(final int x, final int y){
-        Move m=new Move(y,x);
+    //Insert moves in private player's set.
+
+    private void InsertMove( int x,  int y){
+        Piece m=new Piece(this.current_player);
+        m.setX(x);
+        m.setY(y);
         if(this.current_player==this.game.getP1().getColor()){
             this.game.getP1().addposition(m);
         }
@@ -72,7 +85,10 @@ class GameLogic {
         }
     }
 
-
+    private void Print(){
+        this.game.getP1().PrintPositions();
+        this.game.getP2().PrintPositions();
+    }
     // private method for getting a piece on the board. this will return the board
     // value unless we access an index that doesnt exist. this is to make the code
     // for determining reverse chains much easier
@@ -92,7 +108,6 @@ class GameLogic {
     // public method for resetting the game
     public void resetGame() {
         this.resetRenders();
-
         this.current_player=Board.BLACK_PLAYER;
         this.opposing_player=Board.WHITE_PLAYER;
     }

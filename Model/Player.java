@@ -9,7 +9,7 @@ public class Player {
     private final String name;
     private int score = 0;
     private int  color;
-    private Set<Move> position=new LinkedHashSet<Move>();
+    private Set<Piece> position=new LinkedHashSet<Piece>();
     //The idea is to set the position for each player and initialize
     // it with the opening rules.
 
@@ -19,12 +19,12 @@ public class Player {
         else {this.color=2;}
     }
 
-    public void addposition(Move m){
+    public void addposition(Piece m){
         position.add(m);
 
     }
 
-    public void removeposition(Move m){
+    public void removeposition(Piece m){
         position.remove(m);
     }
 
@@ -49,23 +49,23 @@ public class Player {
     }
 
     public void PrintPositions(){
-        List<Move> list = new ArrayList<Move>(position);
+        List<Piece> list = new ArrayList<Piece>(position);
         //return list.get(numMov);
         System.out.println("movements for player "+this.color+":");
-        for(Move model : list) {
-            System.out.println(model.row+" "+model.col);
+        for(Piece model : list) {
+            System.out.println(model.getX()+" "+model.getY());
         }
     }
 
-    public Set<Move> getPositions(){return this.position;}
+    public Set<Piece> getPositions(){return this.position;}
 
-    public boolean CheckinMoves(Move m){
+    public boolean CheckinMoves(Piece m){
         if(position.contains(m)) return true;
         else return false;
     }
 
     public boolean CheckAllMoves(Player p){
-        Set<Move> intersection = new LinkedHashSet<Move>(this.position);
+        Set<Piece> intersection = new LinkedHashSet<Piece>(this.position);
         intersection.retainAll(p.getPositions());
         if(intersection.isEmpty()) return true;
         else return false;

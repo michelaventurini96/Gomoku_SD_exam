@@ -59,7 +59,7 @@ public class Board extends Pane {
     public static int APPLICATION_WIDTH = 500;
     public static int APPLICATION_HEIGHT = 500;
 
-
+    public static int N;
     /* Constructor  */
     public Board(int inputSize,GomokuGame game) {
         this.line_number = inputSize;
@@ -74,7 +74,14 @@ public class Board extends Pane {
         this.initialiseRender();
 
         this.gameLogic = new GameLogic(this,game);
+        this.N=this.gameLogic.N;
+    }
 
+
+    // function that allows the opening functions to work on the board.
+    public void getOpgame(final double x, final double y){
+        this.placePiece(x,y);
+        this.gameLogic.Opening();
     }
 
     public void reset() { this.gameLogic.resetGame(); }

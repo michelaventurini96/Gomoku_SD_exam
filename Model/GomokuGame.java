@@ -6,7 +6,10 @@ public abstract class GomokuGame {
     private  Player p2;
     private static int nBet = 0;
     private static int gridSize;
-    public abstract int initGame();
+    private String op_name;
+    protected Opening op;
+    public abstract void initGame();
+    public abstract void OpeningRules();
     public abstract void setRules();
 
     public void setPlayers(Player p1, Player p2){
@@ -14,6 +17,10 @@ public abstract class GomokuGame {
         System.out.println(p2.getColor());
         this.p1 = p1;
         this.p2 = p2;
+    }
+
+    public void setOp (String s){
+        this.op_name = s;
     }
 
     public void setSize (int size){
@@ -35,5 +42,9 @@ public abstract class GomokuGame {
     }
 
     public static int getGridDim() { return gridSize;  }
+
+    public String getOp(){ return this.op_name;}
+
+    public int getN(){return this.op.getNummoves();}
 
 }
