@@ -16,9 +16,6 @@ public class GomokuStd extends GomokuGame {
     }
 
     @Override
-    public void OpeningRules(){op.calling();}
-
-    @Override
     public void setRules(){
 
     };

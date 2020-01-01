@@ -78,11 +78,15 @@ public class BoardController extends Control {
         this.myBoard = new Board(gridSize,game);
         this.getChildren().add(this.myBoard);
 
+        clicks_count=this.myBoard.InitialMove();
         this.setOnMouseClicked((event) -> {
             clicks_count++;
-            if(clicks_count==this.myBoard.N) this.myBoard.getOpgame(event.getX(), event.getY());
+            // Here appends the opening moves controll
+            if(clicks_count==this.myBoard.N || clicks_count==this.myBoard.N+2) {
+                clicks_count=this.myBoard.getOpgame(event.getX(), event.getY(),clicks_count);
+            }
+            //Here the game goes on
             else this.myBoard.placePiece(event.getX(), event.getY());
-
         });
 
         this.setOnKeyPressed((event) -> {

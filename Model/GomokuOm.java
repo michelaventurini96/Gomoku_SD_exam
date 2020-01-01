@@ -11,9 +11,6 @@ public class GomokuOm extends GomokuGame {
     }
 
     @Override
-    public void OpeningRules(){op.calling();}
-
-    @Override
     public void setRules() {
     }
     @Override

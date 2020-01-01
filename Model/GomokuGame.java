@@ -9,7 +9,6 @@ public abstract class GomokuGame {
     private String op_name;
     protected Opening op;
     public abstract void initGame();
-    public abstract void OpeningRules();
     public abstract void setRules();
 
     public void setPlayers(Player p1, Player p2){
@@ -18,6 +17,11 @@ public abstract class GomokuGame {
         this.p1 = p1;
         this.p2 = p2;
     }
+
+    public void OpeningRules(int c){
+
+        op.calling(c);
+    };
 
     public void setOp (String s){
         this.op_name = s;

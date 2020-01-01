@@ -1,5 +1,7 @@
 package Model;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -77,11 +79,36 @@ public class Board extends Pane {
         this.N=this.gameLogic.N;
     }
 
+    public int InitialMove(){
+        this.gameLogic.OpeningRules();
+        if(this.gameLogic.OpeningName.equals("Pro") || this.gameLogic.OpeningName.equals("LongPro")){
+
+            if(this.board_size==16) this.gameLogic.placePiece(7,7);
+            else this.gameLogic.placePiece(9,9);
+            return 1;
+        }
+        else return 0;
+    }
 
     // function that allows the opening functions to work on the board.
-    public void getOpgame(final double x, final double y){
+    public int getOpgame(final double x, final double y,int c){
         this.placePiece(x,y);
-        this.gameLogic.Opening();
+        int i=0;
+
+        try {
+            this.gameLogic.Opening(c);
+        }
+        catch (Error e){
+            Alert alertColors = new Alert(Alert.AlertType.ERROR);
+            alertColors.setTitle("ERROR - Opening");
+            alertColors.setHeaderText(null);
+            alertColors.setContentText(e.toString());
+            alertColors.showAndWait();
+            i=1;
+            this.UnplacePiece(x,y);
+        }
+
+        return c-i;
     }
 
     public void reset() { this.gameLogic.resetGame(); }
@@ -119,6 +146,14 @@ public class Board extends Pane {
         System.out.println(cellX);
         System.out.println(cellY);
         this.gameLogic.placePiece(cellX, cellY);
+    }
+
+    public void UnplacePiece(final double x, final double y) {
+        int cellX = (int)((x - this.start_x + (this.cell_width / 2.0)) / this.cell_width);
+        int cellY = (int)((y - this.start_y + (this.cell_height / 2.0)) / this.cell_height);
+        //System.out.println(cellX);
+        //System.out.println(cellY);
+        this.gameLogic.UnplacePiece(cellX, cellY);
     }
 
     // private method that will initialise the background and the lines

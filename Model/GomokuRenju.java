@@ -10,8 +10,6 @@ public class GomokuRenju extends GomokuGame{
         op=new Opening(getP1(),getP2(),getOp());
     }
 
-    @Override
-    public void OpeningRules(){op.calling();}
 
     @Override
     public void setRules() {
