@@ -34,7 +34,7 @@ public class Opening {
         }
         if(this.method.equals("Pro")) this.Pro();
         if(this.method.equals("LongPro")) this.LongPro();
-        if(this.method.equals("Swap")) this.Swap();
+        if(this.method.equals("Swap") && c!=5) this.Swap();
 
         if(this.method.equals("Swap2") && c!=5){
             this.over=this.Swap2();

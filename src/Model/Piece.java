@@ -4,7 +4,7 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 
-class Piece extends Group {
+public class Piece extends Group {
 
     private int player;		// the player that this piece belongs to
     private Ellipse piece;	// ellipse representing the player's piece
